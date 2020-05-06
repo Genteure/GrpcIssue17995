@@ -24,10 +24,8 @@ environment:
     - NUGET_PACKAGES: "C:\\english with space\\packages"
 
 # Appveyor bug workaround
-init:
-  - ps: ./init.ps1
-
 before_build:
+  - ps: .\init.ps1
   - cmd: echo %NUGET_PACKAGES%
   - cmd: nuget locals all -list
   - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
