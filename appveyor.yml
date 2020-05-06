@@ -26,6 +26,7 @@ environment:
 # Appveyor bug workaround
 before_build:
   - ps: .\init.ps1
+  - ps: $env:NUGET_PACKAGES
   - cmd: echo %NUGET_PACKAGES%
-  - cmd: nuget locals all -list
+  - ps: nuget locals all -list
   - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
