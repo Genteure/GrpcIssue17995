@@ -31,7 +31,7 @@ before_build:
       }
   - ps: $env:NUGET_PACKAGES
   - cmd: echo %NUGET_PACKAGES%
-  - ps: "This should equals NUGET_PACKAGES_BASE64: " + [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($env:NUGET_PACKAGES))
+  - ps: "\"This should equals NUGET_PACKAGES_BASE64: \" + [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($env:NUGET_PACKAGES))"
   - ps: nuget locals all -list
   - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
 
