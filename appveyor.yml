@@ -12,23 +12,28 @@ cache: # disbale build cache
 matrix:
   fast_finish: false
   allow_failures:
-    - NUGET_PACKAGES: "replace_to_cjk_char"
-    - NUGET_PACKAGES: "C:\\ß\\packages"
-    - NUGET_PACKAGES: "C:\\english with space\\packages"
+    - NUGET_PACKAGES_BASE64: "Qzpc5ZWK44GCXHBhY2thZ2Vz"
+    - NUGET_PACKAGES_BASE64: "Qzpcw59ccGFja2FnZXMK"
 
 environment:
   matrix:
-    - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
-    - NUGET_PACKAGES: "replace_to_cjk_char"
-    - NUGET_PACKAGES: "C:\\ß\\packages"
-    - NUGET_PACKAGES: "C:\\english with space\\packages"
+    # C:\english_alphabet\packages
+    - NUGET_PACKAGES_BASE64: "QzpcZW5nbGlzaF9hbHBoYWJldFxwYWNrYWdlcw=="
+    # C:\啊あ\packages
+    - NUGET_PACKAGES_BASE64: "Qzpc5ZWK44GCXHBhY2thZ2Vz"
+    # C:\ß\packages
+    - NUGET_PACKAGES_BASE64: "Qzpcw59ccGFja2FnZXMK"
 
 before_build:
-  - ps: .\init.ps1
+  - ps: |
+      if ($env:NUGET_PACKAGES_BASE64) {
+        $env:NUGET_PACKAGES = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($env:NUGET_PACKAGES_BASE64))
+      }
   - ps: $env:NUGET_PACKAGES
   - cmd: echo %NUGET_PACKAGES%
+  - ps: "This should equals NUGET_PACKAGES_BASE64: " + [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($env:NUGET_PACKAGES))
   - ps: nuget locals all -list
   - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
 
 on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
