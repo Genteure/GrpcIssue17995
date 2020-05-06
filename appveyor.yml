@@ -1,0 +1,23 @@
+version: 1.0.{build}
+
+image:
+- Visual Studio 2019
+
+build:
+  project: examples/csharp/Helloworld/Greeter.sln
+  verbosity: detailed
+
+cache: # disbale build cache
+
+matrix:
+  fast_finish: false
+  allow_failures:
+    - NUGET_PACKAGES: "C:\\啦あ대\\packages"
+    - NUGET_PACKAGES: "C:\\ß\\packages"
+
+    environment:
+  matrix:
+    - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
+    - NUGET_PACKAGES: "C:\\啦あ대\\packages"
+    - NUGET_PACKAGES: "C:\\ß\\packages"
+
