@@ -12,13 +12,13 @@ cache: # disbale build cache
 matrix:
   fast_finish: false
   allow_failures:
-    - NUGET_PACKAGES: "C:\\cjk_啦あ대\\packages"
+    - NUGET_PACKAGES: "C:\\啊あ\\packages"
     - NUGET_PACKAGES: "C:\\ß\\packages"
 
 environment:
   matrix:
     - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
-    - NUGET_PACKAGES: "C:\\cjk_啦あ대\\packages"
+    - NUGET_PACKAGES: "C:\\啊あ\\packages"
     - NUGET_PACKAGES: "C:\\ß\\packages"
 
 before_build:
