@@ -14,12 +14,14 @@ matrix:
   allow_failures:
     - NUGET_PACKAGES: "C:\\啊あ\\packages"
     - NUGET_PACKAGES: "C:\\ß\\packages"
+    - NUGET_PACKAGES: "C:\\english with space\\packages"
 
 environment:
   matrix:
     - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
     - NUGET_PACKAGES: "C:\\啊あ\\packages"
     - NUGET_PACKAGES: "C:\\ß\\packages"
+    - NUGET_PACKAGES: "C:\\english with space\\packages"
 
 before_build:
   - cmd: nuget locals all -list
