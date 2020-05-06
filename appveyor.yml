@@ -5,7 +5,7 @@ image:
 
 build:
   project: examples/csharp/Helloworld/Greeter.sln
-  verbosity: detailed
+  verbosity: normal
 
 cache: # disbale build cache
 
@@ -21,3 +21,6 @@ environment:
     - NUGET_PACKAGES: "C:\\啦あ대\\packages"
     - NUGET_PACKAGES: "C:\\ß\\packages"
 
+before_build:
+  - cmd: nuget locals all -list
+  - cmd: nuget restore
