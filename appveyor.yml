@@ -23,4 +23,4 @@ environment:
 
 before_build:
   - cmd: nuget locals all -list
-  - cmd: nuget restore
+  - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
