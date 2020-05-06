@@ -12,17 +12,24 @@ cache: # disbale build cache
 matrix:
   fast_finish: false
   allow_failures:
-    - NUGET_PACKAGES: "C:\\啊あ\\packages"
+    - NUGET_PACKAGES: "replace_to_cjk_char"
     - NUGET_PACKAGES: "C:\\ß\\packages"
     - NUGET_PACKAGES: "C:\\english with space\\packages"
 
 environment:
   matrix:
     - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
-    - NUGET_PACKAGES: "C:\\啊あ\\packages"
-    - NUGET_PACKAGES: "C:\\\u554a\u3042\\packages"    
+    - NUGET_PACKAGES: "replace_to_cjk_char"
     - NUGET_PACKAGES: "C:\\ß\\packages"
     - NUGET_PACKAGES: "C:\\english with space\\packages"
+
+# Appveyor bug workaround
+init:
+  - ps: |
+      if ("replace_to_cjk_char" -eq $env:NUGET_PACKAGES)
+      {
+        $env:NUGET_PACKAGES="C:\啊あ\packages"
+      }
 
 before_build:
   - cmd: echo %NUGET_PACKAGES%
