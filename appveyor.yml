@@ -23,10 +23,12 @@ environment:
     - NUGET_PACKAGES: "C:\\ß\\packages"
     - NUGET_PACKAGES: "C:\\english with space\\packages"
 
-# Appveyor bug workaround
 before_build:
   - ps: .\init.ps1
   - ps: $env:NUGET_PACKAGES
   - cmd: echo %NUGET_PACKAGES%
   - ps: nuget locals all -list
   - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
