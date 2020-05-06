@@ -20,9 +20,11 @@ environment:
   matrix:
     - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
     - NUGET_PACKAGES: "C:\\啊あ\\packages"
+    - NUGET_PACKAGES: "C:\\\u554a\u3042\\packages"    
     - NUGET_PACKAGES: "C:\\ß\\packages"
     - NUGET_PACKAGES: "C:\\english with space\\packages"
 
 before_build:
+  - cmd: echo %NUGET_PACKAGES%
   - cmd: nuget locals all -list
   - cmd: nuget restore examples/csharp/Helloworld/Greeter.sln
