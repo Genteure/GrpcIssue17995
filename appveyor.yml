@@ -25,11 +25,7 @@ environment:
 
 # Appveyor bug workaround
 init:
-  - ps: |
-      if ("replace_to_cjk_char" -eq $env:NUGET_PACKAGES)
-      {
-        $env:NUGET_PACKAGES="C:\啊あ\packages"
-      }
+  - ps: ./init.ps1
 
 before_build:
   - cmd: echo %NUGET_PACKAGES%
