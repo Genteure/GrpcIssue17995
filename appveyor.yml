@@ -15,7 +15,7 @@ matrix:
     - NUGET_PACKAGES: "C:\\啦あ대\\packages"
     - NUGET_PACKAGES: "C:\\ß\\packages"
 
-    environment:
+environment:
   matrix:
     - NUGET_PACKAGES: "C:\\english_alphabet\\packages"
     - NUGET_PACKAGES: "C:\\啦あ대\\packages"
